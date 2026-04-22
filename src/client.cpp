@@ -9,10 +9,16 @@
 
 int main() {
 
-    int pingTime = 10;
+    std::ifstream config("config.txt");
+    if (!config) {
+        std::cerr << "Could not open config file\n";
+        return 1;
+    }
 
-    std::string ip = "127.0.0.1";
-    int port = 8080;
+    std::string ip;
+    uint16_t port;
+    int pingTime;
+    config >> ip >> port >> pingTime;
 
     cppheader::Header log { "mac", "ip", "hasInternet"};
     
